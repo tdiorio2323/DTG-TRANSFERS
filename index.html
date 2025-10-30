@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DTF Transfers</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              brand: {
+                cyan: "#0077FF",
+                magenta: "#D200FF",
+                yellow: "#FFD52E",
+                green: "#00D97E",
+                ink: "#0A0A14",
+                panel: "#12121C",
+                'border-soft': '#2A2A3F'
+              },
+              textPrimary: '#FFFFFF',
+              textSecondary: '#C9C9C9'
+            },
+            fontFamily: {
+                sans: ['Inter', 'sans-serif'],
+            },
+          },
+        },
+      };
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script type="importmap">
+{
+  "imports": {
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "react-rnd": "https://aistudiocdn.com/react-rnd@^10.4.10"
+  }
+}
+</script>
+</head>
+  <body class="bg-brand-ink">
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+  </body>
+</html>

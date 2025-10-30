@@ -71,7 +71,7 @@ export const FeaturedProducts: React.FC<FeaturedProductsProps> = ({ title, produ
     }, [activeCategory, priceRange, products, maxProductPrice]);
 
     return (
-        <section className="py-16 md:py-24 bg-brand-ink">
+        <section className="py-16 md:py-24">
             <div className="container mx-auto px-4">
                 <h2 className="text-3xl md:text-4xl font-bold text-center mb-6">{title}</h2>
                 

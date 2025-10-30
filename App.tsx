@@ -65,7 +65,10 @@ function App() {
   };
 
   return (
-    <div className="bg-brand-ink text-textPrimary font-sans overflow-x-hidden">
+    <div 
+      className="text-textPrimary font-sans overflow-x-hidden"
+      style={{ backgroundImage: "url('https://www.transparenttextures.com/patterns/clean-textile.png')" }}
+    >
       <Header navigate={navigate} currentPage={currentPage} />
       <main>
         {renderPage()}

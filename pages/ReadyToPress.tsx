@@ -18,7 +18,7 @@ export const ReadyToPress: React.FC<ReadyToPressProps> = ({ allProducts }) => {
     const readyToPressProducts = allProducts.filter(p => p.category === 'Ready to Press');
     
     return (
-        <div className="bg-brand-ink">
+        <div className="">
             <div className="container mx-auto px-4 py-16 md:py-24">
                 <div className="text-center mb-12">
                      <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight text-textPrimary mb-4">Ready-to-Press Designs</h1>

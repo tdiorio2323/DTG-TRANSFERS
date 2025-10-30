@@ -34,7 +34,7 @@ export const UploadGangSheet: React.FC = () => {
     }, []);
 
     return (
-        <div className="bg-brand-ink py-16 md:py-24">
+        <div className="py-16 md:py-24">
             <div className="container mx-auto px-4">
                 <div className="max-w-3xl mx-auto text-center">
                     <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight text-textPrimary mb-4">Upload Your Gang Sheet</h1>
@@ -43,7 +43,7 @@ export const UploadGangSheet: React.FC = () => {
                     </p>
                 </div>
                 <div 
-                    className={`mt-12 max-w-4xl mx-auto border-4 border-dashed rounded-xl p-8 md:p-16 text-center transition-colors duration-300 ${isDragging ? 'border-brand-cyan bg-brand-panel' : 'border-brand-border-soft bg-brand-ink'}`}
+                    className={`mt-12 max-w-4xl mx-auto border-4 border-dashed rounded-xl p-8 md:p-16 text-center transition-colors duration-300 ${isDragging ? 'border-brand-cyan bg-brand-panel' : 'border-brand-border-soft'}`}
                     onDragEnter={handleDragEnter}
                     onDragLeave={handleDragLeave}
                     onDragOver={handleDragOver}

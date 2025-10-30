@@ -54,7 +54,7 @@ export const Faq: React.FC = () => {
     }
     
     return (
-        <div className="bg-brand-ink py-16 md:py-24">
+        <div className="py-16 md:py-24">
             <div className="container mx-auto px-4">
                 <div className="max-w-3xl mx-auto text-center">
                     <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight text-textPrimary mb-4">Frequently Asked Questions</h1>

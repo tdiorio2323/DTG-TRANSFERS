@@ -1,4 +1,3 @@
-
 import React from 'react';
 
 const steps = [
@@ -24,7 +23,7 @@ const steps = [
 
 export const HowItWorks: React.FC = () => {
     return (
-        <section className="py-16 md:py-24 bg-brand-ink">
+        <section className="py-16 md:py-24">
             <div className="container mx-auto px-4">
                 <div className="text-center mb-12">
                     <h2 className="text-3xl md:text-4xl font-bold text-textPrimary">Start Creating Custom T-shirts at Home</h2>

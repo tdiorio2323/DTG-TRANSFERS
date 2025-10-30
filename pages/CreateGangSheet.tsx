@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { Rnd } from 'react-rnd';
-import { UploadIcon, RotateIcon, CopyIcon, TrashIcon } from '../components/Icons';
+import { UploadIcon, RotateIcon, CopyIcon, TrashIcon, SaveIcon, FolderOpenIcon } from '../components/Icons';
 
 const INCH_TO_PIXEL = 10; // 1 inch = 10 pixels for display purposes
 const SHEET_WIDTH_INCHES = 22;
@@ -21,7 +21,13 @@ interface Design {
 export const BuildGangSheet: React.FC = () => {
     const [designs, setDesigns] = useState<Design[]>([]);
     const [selectedId, setSelectedId] = useState<number | null>(null);
+    const [feedbackMessage, setFeedbackMessage] = useState<{ text: string, type: 'success' | 'error' } | null>(null);
     const fileInputRef = useRef<HTMLInputElement>(null);
+
+    const showFeedback = (text: string, type: 'success' | 'error') => {
+        setFeedbackMessage({ text, type });
+        setTimeout(() => setFeedbackMessage(null), 3000);
+    };
 
     const handleUploadClick = () => {
         fileInputRef.current?.click();
@@ -54,7 +60,6 @@ export const BuildGangSheet: React.FC = () => {
             };
             reader.readAsDataURL(file);
         }
-        // Reset file input to allow uploading the same file again
         event.target.value = '';
     };
 
@@ -81,19 +86,55 @@ export const BuildGangSheet: React.FC = () => {
         setDesigns(designs.filter(d => d.id !== selectedId));
         setSelectedId(null);
     };
+
+    const handleSaveSheet = () => {
+        try {
+            const dataToSave = JSON.stringify(designs);
+            localStorage.setItem('savedGangSheet', dataToSave);
+            showFeedback('Sheet saved successfully!', 'success');
+        } catch (error) {
+            console.error("Failed to save gang sheet:", error);
+            showFeedback('Error: Could not save sheet.', 'error');
+        }
+    };
+
+    const handleLoadSheet = () => {
+        try {
+            const savedData = localStorage.getItem('savedGangSheet');
+            if (savedData) {
+                const loadedDesigns = JSON.parse(savedData);
+                setDesigns(loadedDesigns);
+                setSelectedId(null);
+                showFeedback('Sheet loaded successfully!', 'success');
+            } else {
+                showFeedback('No saved sheet found.', 'error');
+            }
+        } catch (error) {
+            console.error("Failed to load gang sheet:", error);
+            showFeedback('Error: Could not load sheet.', 'error');
+        }
+    };
     
     return (
-        <div className="flex flex-col lg:flex-row min-h-screen bg-brand-ink">
+        <div className="flex flex-col lg:flex-row min-h-screen">
             {/* Controls Panel */}
             <div className="w-full lg:w-80 bg-brand-panel p-6 border-r border-brand-border-soft flex-shrink-0">
                 <h2 className="text-2xl font-bold mb-6">Gang Sheet Builder</h2>
                 <button
                     onClick={handleUploadClick}
-                    className="w-full flex items-center justify-center gap-2 bg-[linear-gradient(90deg,#0077FF,#D200FF)] text-white font-semibold py-3 px-4 rounded-lg hover:scale-[1.03] active:scale-95 transition-all mb-6"
+                    className="w-full flex items-center justify-center gap-2 bg-[linear-gradient(90deg,#0077FF,#D200FF)] text-white font-semibold py-3 px-4 rounded-lg hover:scale-[1.03] active:scale-95 transition-all mb-4"
                 >
                     <UploadIcon className="w-5 h-5" />
                     Upload Your Art
                 </button>
+                <div className="flex gap-2 mb-6">
+                    <button onClick={handleSaveSheet} className="w-full flex items-center justify-center gap-2 bg-brand-ink border border-brand-border-soft text-textPrimary font-semibold py-2 px-4 rounded-lg hover:bg-brand-border-soft transition-colors">
+                        <SaveIcon className="w-5 h-5" /> Save
+                    </button>
+                    <button onClick={handleLoadSheet} className="w-full flex items-center justify-center gap-2 bg-brand-ink border border-brand-border-soft text-textPrimary font-semibold py-2 px-4 rounded-lg hover:bg-brand-border-soft transition-colors">
+                        <FolderOpenIcon className="w-5 h-5" /> Load
+                    </button>
+                </div>
                 <input
                     type="file"
                     ref={fileInputRef}
@@ -102,6 +143,12 @@ export const BuildGangSheet: React.FC = () => {
                     accept="image/png, image/jpeg"
                     className="hidden"
                 />
+
+                {feedbackMessage && (
+                    <div className={`p-3 rounded-md mb-4 text-sm text-center ${feedbackMessage.type === 'success' ? 'bg-brand-green/20 text-brand-green' : 'bg-red-500/20 text-red-400'}`}>
+                        {feedbackMessage.text}
+                    </div>
+                )}
 
                 <div className="space-y-4">
                     <h3 className="text-lg font-semibold border-b border-brand-border-soft pb-2">Selected Design</h3>

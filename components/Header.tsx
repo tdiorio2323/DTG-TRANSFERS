@@ -25,12 +25,12 @@ export const Header: React.FC<HeaderProps> = ({ navigate, currentPage }) => {
     };
 
     return (
-        <header className="bg-brand-panel/80 backdrop-blur-lg sticky top-0 z-50">
+        <header className="bg-white sticky top-0 z-50 shadow-md">
             <div className="container mx-auto px-4">
-                <div className="flex justify-between items-center py-4 border-b border-brand-border-soft">
+                <div className="flex justify-between items-center py-4 border-b border-gray-200">
                     <div className="flex items-center space-x-2">
                         <a href="#" onClick={(e) => { e.preventDefault(); navigate('home'); }} aria-label="Home page">
-                           <img src="https://i.imgur.com/jVui0rH.png" alt="DTF Transfers Logo" className="h-28 w-auto [filter:drop-shadow(0px_0px_2px_#FFF)]" />
+                           <img src="https://i.imgur.com/jVui0rH.png" alt="DTF Transfers Logo" className="h-28 w-auto" />
                         </a>
                     </div>
                     
@@ -41,10 +41,10 @@ export const Header: React.FC<HeaderProps> = ({ navigate, currentPage }) => {
                                     <a 
                                         href="#" 
                                         onClick={(e) => { e.preventDefault(); handleLinkClick(item.page); }}
-                                        className={`text-textPrimary font-medium pb-5 border-b-2 transition-all ${
+                                        className={`font-bold pb-5 border-b-2 transition-all ${
                                             currentPage === item.page 
                                                 ? 'text-brand-cyan border-brand-cyan' 
-                                                : 'border-transparent hover:text-brand-cyan hover:border-brand-cyan'
+                                                : 'text-brand-ink border-transparent hover:text-brand-cyan hover:border-brand-cyan'
                                         }`}
                                     >
                                         {item.name}
@@ -54,14 +54,14 @@ export const Header: React.FC<HeaderProps> = ({ navigate, currentPage }) => {
                         </ul>
                     </nav>
 
-                    <div className="hidden lg:flex items-center space-x-6 text-textPrimary">
+                    <div className="hidden lg:flex items-center space-x-6 text-brand-ink">
                         <button className="hover:text-brand-cyan transition-colors" aria-label="Search"><SearchIcon /></button>
                         <button className="hover:text-brand-cyan transition-colors" aria-label="My Account"><UserIcon /></button>
                         <button className="hover:text-brand-cyan transition-colors" aria-label="Shopping Cart"><ShoppingCartIcon /></button>
                     </div>
 
                     <div className="lg:hidden">
-                        <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="text-textPrimary" aria-label="Open menu">
+                        <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="text-brand-ink" aria-label="Open menu">
                             {isMenuOpen ? <XIcon /> : <MenuIcon />}
                         </button>
                     </div>
@@ -70,21 +70,21 @@ export const Header: React.FC<HeaderProps> = ({ navigate, currentPage }) => {
 
             {/* Mobile Menu */}
             {isMenuOpen && (
-                 <div className="lg:hidden bg-brand-panel absolute top-full left-0 w-full max-h-[calc(100vh-80px)] overflow-y-auto">
+                 <div className="lg:hidden bg-white absolute top-full left-0 w-full max-h-[calc(100vh-80px)] overflow-y-auto shadow-lg">
                     <nav className="flex flex-col space-y-2 p-6">
                         {navItems.map(item => (
                             <a 
                                 href="#" 
                                 key={item.name} 
                                 onClick={(e) => { e.preventDefault(); handleLinkClick(item.page); }}
-                                className={`font-medium transition-colors text-lg py-2 block ${
-                                    currentPage === item.page ? 'text-brand-cyan' : 'text-textPrimary hover:text-brand-cyan'
+                                className={`font-bold transition-colors text-lg py-2 block ${
+                                    currentPage === item.page ? 'text-brand-cyan' : 'text-brand-ink hover:text-brand-cyan'
                                 }`}
                             >
                                 {item.name}
                             </a>
                         ))}
-                        <div className="flex items-center space-x-6 text-textPrimary pt-6 border-t border-brand-border-soft mt-4">
+                        <div className="flex items-center space-x-6 text-brand-ink pt-6 border-t border-gray-200 mt-4">
                             <button className="hover:text-brand-cyan transition-colors" aria-label="Search"><SearchIcon /></button>
                             <button className="hover:text-brand-cyan transition-colors" aria-label="My Account"><UserIcon /></button>
                             <button className="hover:text-brand-cyan transition-colors" aria-label="Shopping Cart"><ShoppingCartIcon /></button>

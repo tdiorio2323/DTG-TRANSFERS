@@ -62,10 +62,7 @@ function App() {
   };
 
   return (
-    <div 
-      className="text-textPrimary font-sans overflow-x-hidden"
-      style={{ backgroundImage: "url('https://i.imgur.com/bSd1osg.jpeg')" }}
-    >
+    <div className="text-textPrimary font-sans overflow-x-hidden">
       <Header navigate={navigate} currentPage={currentPage} />
       <main>
         {renderPage()}
